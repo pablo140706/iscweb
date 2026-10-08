@@ -140,8 +140,10 @@ rutas son relativas, así que funciona igual en local, en `file://` y en un
 subdirectorio de Pages. El archivo `.nojekyll` desactiva el procesado de
 Jekyll.
 
-Las capturas de SAESPEED y las carpetas de trabajo intermedias no se publican
-(ver `.gitignore`): la web no las referencia y pesan ~17 MB.
+El repositorio contiene solo lo necesario para correr y mantener el proyecto:
+los archivos de la app, los CSV canónicos y los scripts de build. El material
+fuente del que se transcribieron los datos (capturas de SAESPEED) ya no forma
+parte del proyecto.
 
 ---
 

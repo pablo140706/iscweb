@@ -230,8 +230,6 @@ function renderProfSchedGrid(ofertas) {
   return html;
 }
 
-const DIAS_ORDEN = { Lun:1, Mar:2, Mie:3, Mié:3, Jue:4, Vie:5, Sab:6, Sáb:6, Dom:7 };
-
 function showProfDetail(name) {
   // Asegura que estemos en la pestaña Maestros
   document.querySelectorAll(".tab").forEach((b) =>

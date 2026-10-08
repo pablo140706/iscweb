@@ -115,4 +115,3 @@ const ESPECIALIZACIONES = [
   },
 ];
 
-const CREDITOS_OPT = 7.5;

@@ -94,8 +94,6 @@ function difBadge(name) {
 // ============================================================
 //  CONSTANTES
 // ============================================================
-const STATES = { pendiente: "Pendiente", aprobada: "Aprobada", reprobada: "Reprobada" };
-const ORDER = ["aprobada", "reprobada", "pendiente"];
 const TOTAL = 387;
 const MAX_CRED = 55;
 const KEY = "avanceISC_v2";

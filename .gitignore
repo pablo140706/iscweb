@@ -17,9 +17,9 @@ desktop.ini
 .DS_Store
 
 # ===== Material fuente =====
-# Las capturas de SAESPEED, sus derivados y los scripts de extracción OCR
-# viven fuera del proyecto, en ../iscweb-fuentes/ (la web no los referencia).
-# Si vuelves a traer material aquí, estas reglas lo mantienen sin publicar:
+# El material fuente (capturas de SAESPEED, CSV por grupo, scripts OCR) ya no
+# forma parte del proyecto. Si vuelves a traer material aquí, estas reglas lo
+# mantienen fuera del repo. Para publicar una captura en el README: git add -f
 *.jpg
 *.JPG
 *.Jpg

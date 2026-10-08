@@ -214,10 +214,6 @@ select.st[data-st="reprobada"] { background-color: var(--bg-repr); color: var(--
   display: inline-block;
 }
 .tcard-metrics { display: flex; gap: 5px; }
-.mm {
-  font-family: var(--display); font-weight: 700; font-size: 11px;
-  padding: 2px 7px; border-radius: 999px; background: var(--bg-pend); color: var(--ink-soft);
-}
 /* Badge de estado derivado (pendiente/aprobada/reprobada/bloqueada) */
 .status-badge {
   display: inline-flex; align-items: center; justify-content: center;
@@ -421,18 +417,18 @@ select.st[data-st="reprobada"] { background-color: var(--bg-repr); color: var(--
 .btn-danger:hover { background: var(--c-repr); color: #fff; }
 
 /* P5: paleta 6 colores (calidad/recomiendan/dificultad) */
-.mm, .metric-pill {
+.metric-pill {
   display: inline-flex; align-items: center; justify-content: center;
   font-family: var(--display); font-weight: 700; font-size: 12px;
   padding: 3px 9px; border-radius: 999px; min-width: 38px;
 }
-.metric-pill.g1, .mm.g1 { background: #15803d; color: #fff; }
-.metric-pill.g2, .mm.g2 { background: #c7eb6d; color: #2d4f00; }
-.metric-pill.y1, .mm.y1 { background: #fde047; color: #5a4400; }
-.metric-pill.o1, .mm.o1 { background: #f97316; color: #fff; }
-.metric-pill.r1, .mm.r1 { background: #dc2626; color: #fff; }
-.metric-pill.r2, .mm.r2 { background: #7f1d1d; color: #fff; }
-.metric-pill.na, .mm.na { background: var(--bg-pend); color: var(--ink-soft); }
+.metric-pill.g1 { background: #15803d; color: #fff; }
+.metric-pill.g2 { background: #c7eb6d; color: #2d4f00; }
+.metric-pill.y1 { background: #fde047; color: #5a4400; }
+.metric-pill.o1 { background: #f97316; color: #fff; }
+.metric-pill.r1 { background: #dc2626; color: #fff; }
+.metric-pill.r2 { background: #7f1d1d; color: #fff; }
+.metric-pill.na { background: var(--bg-pend); color: var(--ink-soft); }
 
 .addBtn {
   flex-shrink: 0; border: 1.5px solid var(--accent); background: var(--card); color: var(--accent);
@@ -456,14 +452,6 @@ select.st[data-st="reprobada"] { background-color: var(--bg-repr); color: var(--
 .profs-table th, .profs-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .profs-table thead th { position: sticky; top: 0; background: #fafbff; z-index: 1; }
 .th-label { font-family: var(--display); font-weight: 700; font-size: 13px; margin-bottom: 6px; }
-.th-sort { display: flex; gap: 4px; }
-.sortbtn {
-  border: 1px solid var(--line); background: var(--card); border-radius: 6px;
-  padding: 3px 7px; font-size: 10.5px; font-weight: 600; color: var(--ink-soft); cursor: pointer;
-}
-.sortbtn:hover { border-color: var(--accent); color: var(--accent); }
-.sortbtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
-
 .pname { font-weight: 600; font-size: 14px; }
 .pmats { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; max-width: 380px; align-items: center; }
 
@@ -488,13 +476,6 @@ select.st[data-st="reprobada"] { background-color: var(--bg-repr); color: var(--
 }
 .addmat:hover { border-color: var(--accent); }
 .addmat:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
-.metric-input {
-  width: 80px; border: 1.5px solid var(--line); border-radius: 8px; padding: 7px 8px;
-  font-family: var(--display); font-weight: 700; font-size: 13px; text-align: center;
-  color: var(--ink); background: var(--card); -moz-appearance: textfield;
-}
-.metric-input::-webkit-outer-spin-button, .metric-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-.metric-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
 .profs-table tbody tr:hover { background: #fafbff; }
 
 /* ========== HORARIO ========== */
@@ -766,33 +747,8 @@ footer { margin-top: 30px; font-size: 12px; color: var(--ink-soft); text-align: 
   letter-spacing: .06em;
 }
 
-.prof-sched {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13.5px;
-}
-.prof-sched th {
-  text-align: left;
-  font-family: var(--display);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  color: #64748b;
-  padding: 8px 10px;
-  border-bottom: 2px solid #e2e8f0;
-  background: #f8fafc;
-}
-.prof-sched td {
-  padding: 10px;
-  border-bottom: 1px solid #f1f5f9;
-}
-.prof-sched tr:hover td { background: #f8fafc; }
-
 @media (max-width: 720px) {
   .pd-metrics { grid-template-columns: 1fr; }
-  .prof-sched { font-size: 12px; }
-  .prof-sched th, .prof-sched td { padding: 6px 6px; }
 }
 
 /* ===== Apartado Fuentes (detalle de maestro) ===== */
