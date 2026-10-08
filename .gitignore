@@ -1,0 +1,38 @@
+# Temporales / editor
+_xlsx_tmp/
+.vscode/
+
+# Permisos locales de Claude Code (específicos de esta máquina)
+.claude/settings.local.json
+
+# Binarios derivados (el CSV es la fuente canónica)
+*.xlsx
+
+# Respaldos de avance personal (son datos tuyos, no del proyecto)
+avance_carrera.json
+
+# Basura del SO
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ===== Publicación en GitHub Pages =====
+# La web no referencia ninguna imagen ni CSV en runtime (todo son literales JS).
+# Estas rutas son material fuente: se conservan en local, no se publican.
+
+# Capturas de SAESPEED (~17 MB)
+IMG/**/*.jpg
+IMG/**/*.JPG
+IMG/**/*.Jpg
+IMG/**/*.png
+Nueva carpeta/
+
+# Derivados intermedios de las capturas (se regeneran con los scripts .py)
+IMG/MAT/grupos/
+IMG/MAT/semestres/
+IMG/VESP/grupos/
+IMG/VESP/semestres/
+IMG/MAT/horario_completo.csv
+
+# Scripts de extracción OCR: sin las capturas no aplican
+*.py
