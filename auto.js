@@ -133,6 +133,17 @@ let autoCtx = null;       // { semNombre, totalFaltantes }
 
 function keyDeSol(sol) { return sol.elegidas.map((e) => e.sid + ":" + e.grupo).sort().join("|"); }
 
+// El pool se calcula contra una base fija: lo que NO está marcado _auto. Si
+// cambia qué materias están fijadas, las soluciones guardadas quedan obsoletas
+// —contienen la materia recién fijada (se duplicaría al concatenar) o chocan
+// con ella—. Invalidar obliga a que el próximo "Otra opción" regenere con la
+// base correcta, donde los candidatos ya excluyen lo que está en base y lo que
+// choca con ella.
+function invalidarPoolAuto() {
+  autoPool = [];
+  autoLastKey = null;
+}
+
 function generarHorarioAuto() {
   const entrada = document.getElementById("autoEntrada").value;
   const salida = document.getElementById("autoSalida").value;

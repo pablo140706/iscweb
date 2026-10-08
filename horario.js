@@ -109,6 +109,7 @@ function renderHorario() {
     btn.onclick = () => {
       const h = state.horario[parseInt(btn.dataset.idx)];
       h._auto = !h._auto;
+      invalidarPoolAuto(); // cambió la base; el pool guardado ya no sirve
       save();
       renderHorario();
     };
