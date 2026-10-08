@@ -135,7 +135,7 @@ vespertino, grupo 3.
 
 ## Publicación
 
-Sitio estático servido con GitHub Pages desde la raíz de `main`. Todas las
+Publicado en **https://pablo140706.github.io/iscweb/** con GitHub Pages desde la raíz de `main`. Todas las
 rutas son relativas, así que funciona igual en local, en `file://` y en un
 subdirectorio de Pages. El archivo `.nojekyll` desactiva el procesado de
 Jekyll.
