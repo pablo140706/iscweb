@@ -631,6 +631,17 @@ select.st[data-st="reprobada"] { background-color: var(--bg-repr); color: var(--
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
+.hcard-acts { flex-shrink: 0; display: flex; align-items: center; gap: 8px; }
+.hkeep {
+  flex-shrink: 0; border: 1.5px solid var(--line); background: var(--card);
+  border-radius: 999px; padding: 6px 12px; cursor: pointer;
+  font-family: var(--display); font-weight: 600; font-size: 11.5px;
+  color: var(--ink-soft); white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.hkeep:hover { border-color: var(--c-apro); color: var(--c-apro); }
+.hkeep.on { background: var(--bg-apro); border-color: var(--c-apro); color: var(--c-apro); }
+.hkeep.on:hover { background: var(--c-apro); color: #fff; }
 .hdel {
   flex-shrink: 0; width: 30px; height: 30px; border: 1.5px solid var(--line); background: var(--card);
   border-radius: 999px; cursor: pointer; color: var(--ink-soft); font-size: 13px;

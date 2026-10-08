@@ -89,12 +89,29 @@ function renderHorario() {
         ${h.sesiones && h.sesiones.length ? `<div class="hcard-ses">${esc(sesionesText(h.sesiones))}</div>` : ""}
         ${miniMetrics(m)}
       </div>
-      <button class="hdel" data-idx="${idx}" title="Quitar del horario">✕</button>
+      <div class="hcard-acts">
+        <button class="hkeep ${h._auto ? "" : "on"}" data-idx="${idx}"
+                title="${h._auto ? "Fijar: el modo automático dejará de cambiarla" : "Fijada: 🎲 Otra opción no la toca. Pulsa para liberarla"}">
+          ${h._auto ? "📌 Mantener" : "📌 Mantenida"}
+        </button>
+        <button class="hdel" data-idx="${idx}" title="Quitar del horario">✕</button>
+      </div>
     </div>`;
   }).join("");
 
   horarioListEl.querySelectorAll(".prof-link").forEach((a) => {
     a.onclick = (e) => { e.preventDefault(); showProfDetail(a.dataset.prof); };
+  });
+
+  // Mantener: fija la materia para que el modo automático deje de rebarajarla.
+  // Generar y 🎲 Otra opción conservan todo lo que no tenga _auto (ver auto.js).
+  horarioListEl.querySelectorAll(".hkeep").forEach((btn) => {
+    btn.onclick = () => {
+      const h = state.horario[parseInt(btn.dataset.idx)];
+      h._auto = !h._auto;
+      save();
+      renderHorario();
+    };
   });
 
   horarioListEl.querySelectorAll(".hdel").forEach((btn) => {
