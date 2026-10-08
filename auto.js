@@ -151,15 +151,20 @@ function generarHorarioAuto() {
   const credBase = base.reduce((a, h) => a + h.cred, 0);
   const credDisponibles = MAX_CRED - credBloq - credBase;
 
-  // 1) Todas las pendientes inscribibles que no estén ya en el horario
+  // 1) Todas las inscribibles que no estén ya en el horario.
+  //    Incluye reprobadas: canInscribir() solo descarta aprobadas y las
+  //    reprobadas en 2ª vuelta (bloqueadas, sin 3.er intento). El criterio de
+  //    recurso es el mismo que usa el alta manual en avance.js.
   const pendientes = [];
   for (let s = 0; s < PLAN.length; s++) {
     PLAN[s].materias.forEach(([name, cred], i) => {
       const id = idOf(s, i);
       if (OPT_SLOTS[id]) return;
       const rec = getSub(id, name);
-      if (rec.status === "pendiente" && canInscribir(rec) && !base.some((h) => h.sid === id)) {
-        pendientes.push({ id, name, cred, i, s, recurse: rec.veces >= 2 });
+      const inscribible = rec.status === "pendiente" || rec.status === "reprobada";
+      if (inscribible && canInscribir(rec) && !base.some((h) => h.sid === id)) {
+        const recurse = rec.status === "reprobada" || rec.veces >= 2;
+        pendientes.push({ id, name, cred, i, s, recurse });
       }
     });
   }
@@ -188,10 +193,16 @@ function generarHorarioAuto() {
 
   // 3) Ventana de semestres: ancla en el semestre más bajo con pendientes
   //    colocables y permite a lo más VENTANA_SEM semestres (ej. 1 → 1,2,3).
-  const minSem = Math.min(...faltantes.map((f) => f.s));
+  //    Los recursos quedan FUERA de este cálculo y nunca se filtran: una
+  //    reprobada de 1.er semestre no debe arrastrar la ventana hacia abajo y
+  //    dejar fuera el semestre que la persona cursa hoy.
+  const recursos = faltantes.filter((f) => f.recurse);
+  const normales = faltantes.filter((f) => !f.recurse);
+  const ancla = normales.length ? normales : faltantes;
+  const minSem = Math.min(...ancla.map((f) => f.s));
   const maxSem = minSem + (VENTANA_SEM - 1);
-  const fueraVentana = faltantes.filter((f) => f.s > maxSem);
-  faltantes = faltantes.filter((f) => f.s <= maxSem);
+  const fueraVentana = normales.filter((f) => f.s > maxSem);
+  faltantes = recursos.concat(normales.filter((f) => f.s <= maxSem));
 
   if (credDisponibles <= 0) {
     autoPool = []; if (otraBtn) otraBtn.hidden = true;
@@ -221,8 +232,13 @@ function generarHorarioAuto() {
   const soluciones = [];
   const seen = new Set();
   for (let iter = 0; iter < 600; iter++) {
+    // Prioridad: primero TODOS los recursos (reprobadas y 2ª vuelta), de
+    // semestre menor a mayor; después el resto con la misma cascada. Así los
+    // recursos eligen horario antes y el greedy no se queda sin huecos para
+    // ellos. El azar sigue viviendo dentro de cada grupo.
     const orden = [];
-    for (const s of semKeys) orden.push(...shuffle([...bySem[s]]));
+    for (const s of semKeys) orden.push(...shuffle(bySem[s].filter((f) => f.recurse)));
+    for (const s of semKeys) orden.push(...shuffle(bySem[s].filter((f) => !f.recurse)));
 
     const elegidas = [];
     let credAcum = 0;
@@ -244,7 +260,12 @@ function generarHorarioAuto() {
     const key = elegidas.map((e) => e.sid + ":" + e.grupo).sort().join("|");
     if (seen.has(key)) continue;
     seen.add(key);
-    soluciones.push({ elegidas, placed: elegidas.length, huecos: contarHuecos(base.concat(elegidas)) });
+    soluciones.push({
+      elegidas,
+      placed: elegidas.length,
+      recursos: elegidas.filter((e) => e.tipo === "recurse").length,
+      huecos: contarHuecos(base.concat(elegidas)),
+    });
   }
 
   if (!soluciones.length) {
@@ -253,13 +274,20 @@ function generarHorarioAuto() {
     return;
   }
 
-  soluciones.sort((a, b) => b.placed - a.placed || a.huecos - b.huecos);
-  const bestPlaced = soluciones[0].placed;
-  const minHuecos = soluciones.find((s) => s.placed === bestPlaced).huecos;
-  autoPool = soluciones.filter((s) => s.placed === bestPlaced && s.huecos === minHuecos);
+  // Criterio de desempate, en orden: más recursos colocados, luego más
+  // materias, luego menos huecos. Que los recursos manden aquí es lo que
+  // garantiza la prioridad: ponerlos primero en el orden no basta, porque una
+  // combinación con menos recursos pero más materias ganaría por volumen.
+  soluciones.sort((a, b) => b.recursos - a.recursos || b.placed - a.placed || a.huecos - b.huecos);
+  const maxRecursos = soluciones[0].recursos;
+  const conRecursos = soluciones.filter((s) => s.recursos === maxRecursos);
+  const bestPlaced = conRecursos[0].placed;
+  const minHuecos = conRecursos.find((s) => s.placed === bestPlaced).huecos;
+  autoPool = conRecursos.filter((s) => s.placed === bestPlaced && s.huecos === minHuecos);
   autoLastKey = null;
   autoCtx = {
     totalFaltantes: faltantes.length,
+    totalRecursos: recursos.length,
     bloqueadasSer: bloqueadasSer.length,
     fueraVentana: fueraVentana.length,
     minSem, maxSem,
@@ -300,9 +328,15 @@ function aplicarSolucionAuto() {
   });
   const resumenSems = Object.keys(porSem).sort((a, b) => a - b)
     .map((s) => `${porSem[s].length} de ${PLAN[s].sem}`).join(", ");
+  const recColocados = sol.recursos || 0;
+  const recTotal = autoCtx.totalRecursos || 0;
   let html = `<div class="auto-ok">✅ Agregué <b>${colocadas}</b> materia(s): ${resumenSems}. ` +
+    (recColocados ? `Incluye <b>${recColocados}</b> para recursar. ` : "") +
     `Horario: <b>${state.horario.length}</b> materias · ${fmt(totalCred)} créditos · ` +
     `<b>${sol.huecos === 0 ? "sin horas muertas" : sol.huecos + " hueco(s)"}</b>.</div>`;
+  if (recTotal > recColocados) {
+    html += `<div class="auto-warn">⚠️ ${recTotal - recColocados} materia(s) por recursar no cupieron en tu ventana de horas, aunque tenían prioridad. Amplía el horario o cambia de turno.</div>`;
+  }
   if (sinFit > 0) {
     html += `<div class="auto-warn">⚠️ ${sinFit} materia(s) no cupieron sin chocar en tu ventana de horas. Amplía el horario o agrégalas a mano.</div>`;
   }

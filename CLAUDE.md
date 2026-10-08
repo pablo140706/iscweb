@@ -87,6 +87,7 @@ Numeradas según las pidió el usuario. Todas ya implementadas en el código.
 17. **Modo Auto en Generar Horario** (rediseñado):
    - Inputs: turno (M/V/ambos), hora entrada, hora salida, máx materias (1–9, default 7).
    - **Completar, no sobrescribir:** conserva lo que metiste a mano (entradas sin `_auto`); solo reemplaza lo auto-generado (`_auto:true`).
+   - **Recursos primero:** las materias `reprobada` (y las de 2.ª vuelta) entran al pool y se colocan ANTES que cualquier otra. Quedan exentas de la ventana de semestres (si no, una reprobada de 1.er sem arrastraría la ventana y dejaría fuera el semestre actual) y el desempate de soluciones las premia: más recursos > más materias > menos huecos.
    - **Cascada multi-semestre:** recorre TODOS los semestres de menor a mayor. Prioriza el semestre más bajo con pendientes, luego sube. Intercala semestres por compacidad pero el orden greedy garantiza que el menor se llena primero.
    - **Créditos bloqueados cuentan:** `creditosBloqueados()` suma los créditos de materias bloqueadas (reprobada + veces≥2). Se restan de los 55 disponibles. `maxEfectivo = 55 − credBloq`.
    - Optativas NO — se eligen a mano.

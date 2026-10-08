@@ -1,4 +1,4 @@
-﻿// ========== HORARIOS REALES (generado desde horarios.csv + horarios_vespertino.csv) ==========
+﻿// ========== HORARIOS REALES (generado desde horarios.csv + IMG/VESP/horario_completo1.csv) ==========
 // Matutino (XCM) + Vespertino (XCV). Sin choques intra-grupo.
 const SCHEDULE = [
   { grupo:"2CM1", materia:"ALGORITMOS Y ESTRUCTURA DE DATOS", profesor:"TECLA PARRA ROBERTO", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"07:00",fin:"08:30"},{dia:"Jue",ini:"07:00",fin:"08:30"},{dia:"Vie",ini:"08:30",fin:"10:00"}] },
@@ -188,13 +188,17 @@ const SCHEDULE = [
   { grupo:"8CM4", materia:"LIDERAZGO PERSONAL", profesor:"FERRER TENORIO JORGE", edificio:"4", salon:"113", sesiones:[{dia:"Lun",ini:"12:00",fin:"13:30"},{dia:"Mie",ini:"12:00",fin:"13:30"},{dia:"Jue",ini:"12:00",fin:"13:30"}] },
   { grupo:"8CM4", materia:"GESTION EMPRESARIAL", profesor:"SOSA ADAN FANNY", edificio:"4", salon:"208", sesiones:[{dia:"Mar",ini:"10:30",fin:"12:00"},{dia:"Mie",ini:"10:30",fin:"12:00"},{dia:"Vie",ini:"10:30",fin:"12:00"}] },
   { grupo:"8CM4", materia:"DESARROLLO DE HABILIDADES SOCIALES PARA LA ALTA DIRECCION", profesor:"OLALDE MOGOLLAN NORMA", edificio:"2", salon:"202", sesiones:[{dia:"Lun",ini:"10:30",fin:"12:00"},{dia:"Jue",ini:"10:30",fin:"12:00"}] },
+  { grupo:"1CV6", materia:"MATEMATICAS DISCRETAS", profesor:"FLORES MERAZ YESICA SONIA", edificio:"1", salon:"212", sesiones:[{dia:"Lun",ini:"18:30",fin:"20:00"},{dia:"Mar",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"18:30",fin:"20:00"},{dia:"Vie",ini:"16:30",fin:"18:00"}] },
+  { grupo:"1CV6", materia:"CALCULO", profesor:"SOLORZA GUZMAN MISAEL", edificio:"1", salon:"212", sesiones:[{dia:"Lun",ini:"16:30",fin:"18:00"},{dia:"Mie",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"16:30",fin:"18:00"}] },
+  { grupo:"1CV6", materia:"ANALISIS VECTORIAL", profesor:"CRUZ ROJAS JORGE ALBERTO", edificio:"1", salon:"212", sesiones:[{dia:"Mar",ini:"15:00",fin:"16:30"},{dia:"Mie",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"15:00",fin:"16:30"}] },
+  { grupo:"1CV7", materia:"CALCULO", profesor:"DIAZ SANCHEZ HUGO", edificio:"1", salon:"213", sesiones:[{dia:"Mar",ini:"15:00",fin:"16:30"},{dia:"Mie",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"15:00",fin:"16:30"}] },  
   { grupo:"2CV1", materia:"ALGORITMOS Y ESTRUCTURA DE DATOS", profesor:"CARMONA GARCIA ENRIQUE ALFONSO", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"15:00",fin:"16:30"},{dia:"Jue",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"16:30",fin:"18:00"}] },
-  { grupo:"2CV1", materia:"ALGEBRA LINEAL", profesor:"GUTIERREZ MEJIA DARWIN", edificio:"1", salon:"007", sesiones:[{dia:"Mar",ini:"15:00",fin:"16:30"},{dia:"Mie",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"15:00",fin:"16:30"}] },
+  { grupo:"2CV1", materia:"ALGEBRA LINEAL", profesor:"GUTIERREZ MEJIA DARWIN", edificio:"1", salon:"007", sesiones:[{dia:"Mar",ini:"15:00",fin:"16:30"},{dia:"Mie",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"15:00",fin:"16:30"}] },//
   { grupo:"2CV1", materia:"CALCULO APLICADO", profesor:"JUAREZ LEON CARLOS", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"16:30",fin:"18:00"},{dia:"Mie",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"16:30",fin:"18:00"}] },
   { grupo:"2CV1", materia:"MECANICA Y ELECTROMAGNETISMO", profesor:"ESQUIVEL CENTENO JOSE ARMANDO", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"20:00",fin:"21:30"},{dia:"Mar",ini:"20:00",fin:"21:30"},{dia:"Mie",ini:"20:00",fin:"21:30"},{dia:"Jue",ini:"20:00",fin:"21:30"}] },
   { grupo:"2CV1", materia:"INGENIERIA ETICA Y SOCIEDAD", profesor:"CRUZ LAZARO ING. APOLINAR FRANCISCO", edificio:"1", salon:"007", sesiones:[{dia:"Mar",ini:"18:30",fin:"20:00"},{dia:"Mie",ini:"18:30",fin:"20:00"},{dia:"Vie",ini:"18:30",fin:"20:00"}] },
   { grupo:"2CV1", materia:"FUNDAMENTOS ECONOMICOS", profesor:"MARTINEZ PERALES JOSE CRUZ", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"18:30",fin:"20:00"},{dia:"Mar",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"18:30",fin:"20:00"}] },
-  { grupo:"2CV2", materia:"ALGORITMOS Y ESTRUCTURA DE DATOS", profesor:"JUÁREZ MÉNDEZ ANA BELEM", edificio:"1", salon:"011", sesiones:[{dia:"Lun",ini:"13:30",fin:"15:00"},{dia:"Mar",ini:"13:30",fin:"15:00"},{dia:"Jue",ini:"13:30",fin:"15:00"}] },
+  { grupo:"2CV2", materia:"ALGORITMOS Y ESTRUCTURA DE DATOS", profesor:"JUÁREZ MÉNDEZ ANA BELEM", edificio:"1", salon:"011", sesiones:[{dia:"Lun",ini:"13:30",fin:"15:00"},{dia:"Mar",ini:"13:30",fin:"15:00"},{dia:"Jue",ini:"13:30",fin:"15:00"}] }, 
   { grupo:"2CV2", materia:"ALGEBRA LINEAL", profesor:"NAVA LARA JOEL", edificio:"1", salon:"011", sesiones:[{dia:"Lun",ini:"16:30",fin:"18:00"},{dia:"Mie",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"16:30",fin:"18:00"}] },
   { grupo:"2CV2", materia:"CALCULO APLICADO", profesor:"JUAREZ LEON CARLOS", edificio:"1", salon:"011", sesiones:[{dia:"Lun",ini:"18:30",fin:"20:00"},{dia:"Mar",ini:"16:30",fin:"18:00"},{dia:"Jue",ini:"18:30",fin:"20:00"}] },
   { grupo:"2CV2", materia:"MECANICA Y ELECTROMAGNETISMO", profesor:"CORREA COYAC DAVID", edificio:"1", salon:"011", sesiones:[{dia:"Mar",ini:"15:00",fin:"16:30"},{dia:"Mie",ini:"15:00",fin:"16:30"},{dia:"Jue",ini:"15:00",fin:"16:30"},{dia:"Vie",ini:"15:00",fin:"16:30"}] },
