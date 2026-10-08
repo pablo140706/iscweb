@@ -3,7 +3,7 @@
 
   Fuentes (editables a mano)            ->  Artefacto derivado (NO editar a mano)
   ---------------------------------------------------------------------------
-  horarios.csv + IMG/VESP/horario_completo1.csv  ->  schedule.js
+  horarios.csv + horarios_vespertino.csv  ->  schedule.js
   AESTR_CORREGIDO_3.csv + AESTR_VESPERTINO_plantilla.csv  ->  metrics.js
   maestros_manual.csv                            ->  maestros_manual.js
 
@@ -87,7 +87,7 @@ function Build-Schedule {
 
   foreach ($src in @(
       (Join-Path $root 'horarios.csv'),
-      (Join-Path $root 'IMG/VESP/horario_completo1.csv'))) {
+      (Join-Path $root 'horarios_vespertino.csv'))) {
     $csv = Read-Csv $src
     $h = $csv.header
     $iG = Col $h 'Grupo'; $iA = Col $h 'Asignatura'; $iP = Col $h 'Profesor'
@@ -114,7 +114,7 @@ function Build-Schedule {
   }
 
   $body = @()
-  $body += '// ========== HORARIOS REALES (generado desde horarios.csv + IMG/VESP/horario_completo1.csv) =========='
+  $body += '// ========== HORARIOS REALES (generado desde horarios.csv + horarios_vespertino.csv) =========='
   $body += '// Matutino (XCM) + Vespertino (XCV). Sin choques intra-grupo.'
   $body += 'const SCHEDULE = ['
   $body += $out

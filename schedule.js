@@ -1,4 +1,4 @@
-﻿// ========== HORARIOS REALES (generado desde horarios.csv + IMG/VESP/horario_completo1.csv) ==========
+﻿// ========== HORARIOS REALES (generado desde horarios.csv + horarios_vespertino.csv) ==========
 // Matutino (XCM) + Vespertino (XCV). Sin choques intra-grupo.
 const SCHEDULE = [
   { grupo:"2CM1", materia:"ALGORITMOS Y ESTRUCTURA DE DATOS", profesor:"TECLA PARRA ROBERTO", edificio:"1", salon:"007", sesiones:[{dia:"Lun",ini:"07:00",fin:"08:30"},{dia:"Jue",ini:"07:00",fin:"08:30"},{dia:"Vie",ini:"08:30",fin:"10:00"}] },

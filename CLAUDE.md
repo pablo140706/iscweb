@@ -14,7 +14,7 @@ Sin backend, sin framework. Todo vive en archivos estáticos servidos en `http:/
 index.html           ← UI + sistema de pestañas
 app.js               ← lógica principal (estado, render, eventos)
 styles.css           ← visual
-schedule.js          ← generado desde horarios.csv + IMG/VESP/horario_completo1.csv (430 ofertas, M+V ISC)
+schedule.js          ← generado desde horarios.csv + horarios_vespertino.csv (350 ofertas, M+V ISC)
 metrics.js           ← generado desde AESTR_CORREGIDO_3.csv + AESTR_VESPERTINO_plantilla.csv (202 profes M+V)
 maestros_manual.js   ← generado desde maestros_manual.csv (205 links de fuente; se carga con <script> para file://)
 cupos.js             ← generado desde cupos.csv (476 grupo+materia con cupo/inscritos/disponibles)
@@ -29,7 +29,7 @@ validate.ps1         ← audita choques, horas, profes sin métrica, links falta
 ```
 horarios.csv                    ← Mat ISC, 240 filas, sin choques, IS LA VERDAD para schedule.js (parte M)
 AESTR_CORREGIDO_3.csv           ← Mat ISC, calificaciones por maestro, IS LA VERDAD para metrics.js (parte M)
-IMG/VESP/horario_completo1.csv  ← Vesp ISC, 190 filas, sin choques, YA en schedule.js (parte V)
+horarios_vespertino.csv         ← Vesp ISC, sin choques, YA en schedule.js (parte V)
 AESTR_VESPERTINO_plantilla.csv  ← Vesp ISC, calificaciones 105 maestros, YA en metrics.js (parte V)
 maestros_manual.csv             ← nombre,link_fuente (links de MisProfesores). IS LA VERDAD para maestros_manual.js
 cupos.csv                       ← grupo,codigo,materia,semestre,cupo,inscritos,disponibles. IS LA VERDAD para cupos.js
@@ -42,7 +42,7 @@ cupos.csv                       ← grupo,codigo,materia,semestre,cupo,inscritos
 - Merge M+V con **dedup por nombre, matutino gana** (por eso TELLEZ BARRERA sale correcto pese a tener columnas invertidas en el CSV vespertino).
 - Corrección explícita en `$METRIC_FIX`: BARRALES recomiendan `1.4→14`.
 - Maestros sin ningún dato (calidad/rec/dif vacíos) se omiten de `metrics.js`.
-- El vespertino (`horario_completo1.csv`) trae columna extra `Fuente`: se lee por nombre de header, no por posición.
+- El vespertino (`horarios_vespertino.csv`) trae columna extra `Fuente`: se lee por nombre de header, no por posición.
 
 ### Convención de IDs
 

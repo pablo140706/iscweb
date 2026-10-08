@@ -111,7 +111,7 @@ App (modularizada; el orden de carga en index.html importa):
 
 Fuentes canónicas (editables a mano):
   horarios.csv                    horarios matutino
-  IMG/VESP/horario_completo1.csv  horarios vespertino
+  horarios_vespertino.csv         horarios vespertino
   AESTR_CORREGIDO_3.csv           calificaciones de profesores (matutino)
   AESTR_VESPERTINO_plantilla.csv  calificaciones de profesores (vespertino)
   maestros_manual.csv             nombre → link de MisProfesores
